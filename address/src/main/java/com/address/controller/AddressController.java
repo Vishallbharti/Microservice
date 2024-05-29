@@ -13,40 +13,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.address.entity.Address;
-import com.address.service.AddressServiceImpl;
+import com.address.service.AddressService;
 
 @RestController
 @RequestMapping("/api/address")
 public class AddressController {
 	
 	@Autowired
-	private AddressServiceImpl addressServiceImpl;
+	private AddressService addressService;
 	
 	
 	@GetMapping
     public List<Address> getAllAddresses() {
-        return addressServiceImpl.getAllAddress();
+        return addressService.getAllAddress();
     }
 
     @GetMapping("/{id}")
     public Address getAddressById(@PathVariable int id) {
-        return addressServiceImpl.getAddressById(id)
+        return addressService.getAddressById(id)
                 .orElseThrow();
     }
 
     @PostMapping("/createAddress")
     public Address createAddress(@RequestBody Address address) {
-        return addressServiceImpl.createAddress(address);
+        return addressService.createAddress(address);
     }
 
     @PutMapping("/updateAddress")
     public Address updateAddress( @RequestBody Address addressDetails) {
-        return addressServiceImpl.updateAddress(addressDetails);
+        return addressService.updateAddress(addressDetails);
     }
 
     @DeleteMapping("/{id}")
     public void deleteAddress(@PathVariable int id) {
-        this.addressServiceImpl.deleteAddress(id);
+        this.addressService.deleteAddress(id);
     }
 
 }
