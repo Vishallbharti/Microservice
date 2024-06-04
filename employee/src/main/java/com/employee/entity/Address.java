@@ -25,6 +25,35 @@ public class Address {
 	private String street;
 	private String state;
 	private int zip;
+	
+	
+	public Address() {
+		super();
+	}
+	
+	
+	
+	public Address(int flat, String street, String state, int zip) {
+		super();
+		this.flat = flat;
+		this.street = street;
+		this.state = state;
+		this.zip = zip;
+	}
+
+
+
+	public Address(int id, int flat, String street, String state, int zip) {
+		super();
+		this.id = id;
+		this.flat = flat;
+		this.street = street;
+		this.state = state;
+		this.zip = zip;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
