@@ -12,6 +12,11 @@ public class UrekaApplication {
 		SpringApplication.run(UrekaApplication.class, args);
 		
 		System.out.println("Eureka Server");
+		
+		Integer a = 100;
+		Integer b = 100;
+		
+		System.out.println(a==b);
 	}
 
 }
