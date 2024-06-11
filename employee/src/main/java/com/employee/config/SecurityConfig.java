@@ -7,17 +7,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.employee.security.JwtAuthenticationEntryPoint;
 import com.employee.security.JwtAuthenticationFilter;
+import com.employee.service.UserInfoDetailsService;
 
 @Configuration
 public class SecurityConfig {
@@ -28,9 +25,15 @@ public class SecurityConfig {
 	private JwtAuthenticationFilter filter;
 
 	@Bean
-	public UserDetailsService userDetailService() {
-		UserDetails userDetails = User.builder().username("Vishal21").password(passwordEncoder().encode("Vishal@21")).build();
-		return new InMemoryUserDetailsManager(userDetails);
+	public UserInfoDetailsService userDetailService() {
+//		UserDetails userDetails = User.builder()
+//				.username("Vishal21")
+//				.password(passwordEncoder()
+//				.encode("Vishal@21"))
+//				.build();
+//		return new InMemoryUserDetailsManager(userDetails);
+		
+		return new UserInfoDetailsService();
 	}
 
 	@Bean
@@ -38,6 +41,7 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                		.requestMatchers("/users/**").permitAll()
         				.requestMatchers("/employees/**").authenticated()
         				.requestMatchers("/v1/config/test").authenticated()
         	            .requestMatchers("/auth/login/**").permitAll().anyRequest().authenticated()
