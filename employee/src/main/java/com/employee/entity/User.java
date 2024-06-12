@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.Optional;
+
 @Entity
 public class User {
 	
@@ -89,6 +91,5 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", phone="
 				+ phone + ", role=" + role + "]";
 	}
-	
 
 }

@@ -38,28 +38,29 @@ public class UserController {
 
 	// Get user by id
 	@GetMapping("user/{username}")
-	@PreAuthorize("hasAuthority('ROLE_USER')")
+//	@PreAuthorize("hasAuthority('ROLE_USER')")
 	public Optional<User> getAdminByUsername(@PathVariable String username) {
 		return this.userService.getUser(username);
 	}
 
 	// Get user by id
 	@GetMapping("admin/{username}")
-	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public Optional<User> getUserByUsername(@PathVariable String username) {
 		return this.userService.getUser(username);
 	}
 
 	// create new user
-	@PostMapping("/createUser")
+	@PostMapping("/createAdmin")
 //	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-	public User createUser(@RequestBody User user) throws Exception {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		return this.userService.addUser(user);
+	public User createUser(@RequestBody User admin) throws Exception {
+		admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+		admin.setRole("ROLE_ADMIN");
+		return this.userService.addUser(admin);
 	}
 
-	@PostMapping("/addUser")
-	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	@PostMapping("/createUser")
+//	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public User addUser(@RequestBody User user) throws Exception {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRole("ROLE_USER");

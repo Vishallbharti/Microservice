@@ -5,14 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "address")
 @AllArgsConstructor
+@Data
 @Getter
 @Setter
 @ToString
@@ -25,71 +23,6 @@ public class Address {
 	private String street;
 	private String state;
 	private int zip;
-	
-	
-	public Address() {
-		super();
-	}
-	
-	
-	
-	public Address(int flat, String street, String state, int zip) {
-		super();
-		this.flat = flat;
-		this.street = street;
-		this.state = state;
-		this.zip = zip;
-	}
 
-
-
-	public Address(int id, int flat, String street, String state, int zip) {
-		super();
-		this.id = id;
-		this.flat = flat;
-		this.street = street;
-		this.state = state;
-		this.zip = zip;
-	}
-
-
-
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getFlat() {
-		return flat;
-	}
-	public void setFlat(int flat) {
-		this.flat = flat;
-	}
-	public String getStreet() {
-		return street;
-	}
-	public void setStreet(String street) {
-		this.street = street;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public int getZip() {
-		return zip;
-	}
-	public void setZip(int zip) {
-		this.zip = zip;
-	}
-	@Override
-	public String toString() {
-		return "Address [id=" + id + ", flat=" + flat + ", street=" + street + ", state=" + state + ", zip=" + zip
-				+ "]";
-	}
-	
-	
 
 }
